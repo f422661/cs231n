@@ -1,5 +1,6 @@
 # cs231n
 
+These are the homework I have finished of cs231  
 
 ## Assignment1:
 
