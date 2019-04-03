@@ -12,7 +12,7 @@ These are the homework I have finished of cs231
 
 ## Assignment2:
 
-* Q1: [Fully-connected Neural Network](https://github.com/f422661/cs231n/blob/master/assignment2/FullyConnectedNets.ipynb) (processing)
+* Q1: [Fully-connected Neural Network](https://github.com/f422661/cs231n/blob/master/assignment2/FullyConnectedNets.ipynb) (finished excepting batch normalization and dropout)
 * Q2: 
 * Q3:
 * Q4: [Convolutional Networks](https://github.com/f422661/cs231n/blob/master/assignment2/ConvolutionalNetworks.ipynb) (processing)
