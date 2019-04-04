@@ -204,8 +204,6 @@ class FullyConnectedNet(object):
         self.params['W'+str(self.num_layers)] = weight_scale * np.random.randn(hidden_dims[self.num_layers-2], num_classes)
         self.params['b'+str(self.num_layers)] = np.zeros(num_classes)
 
-
-
         ############################################################################
         #                             END OF YOUR CODE                             #
         ############################################################################
@@ -274,7 +272,7 @@ class FullyConnectedNet(object):
         for i in range(self.num_layers-1):
           w = self.params['W'+str(i+1)]
           b = self.params['b'+str(i+1)]
-          out, fc_cache[i] = affine_relu_forward(out, w, b)
+          out, fc_cache[i+1] = affine_relu_forward(out, w, b)
 
         ## output layer
         w = self.params['W'+str(self.num_layers)]
@@ -318,12 +316,14 @@ class FullyConnectedNet(object):
 
         loss += 0.5*reg*reg_w
 
-        local_grads['h'+str(self.num_layers)],local_grads['W'+str(self.num_layers)],local_grads['b'+str(self.num_layers)] = affine_relu_backward(dL,out_cache)
+        ## The gradient of last layer
+        local_grads['h'+str(self.num_layers-1)],local_grads['W'+str(self.num_layers)],local_grads['b'+str(self.num_layers)] = affine_relu_backward(dL,out_cache)
 
-        for i in range(self.num_layers-2,-1,-1):
+
+        for i in range(self.num_layers-1,0,-1):
           cache = fc_cache[i]
-          dh = local_grads['h'+str(i+2)]
-          local_grads['h'+str(i+1)],local_grads['W'+str(i+1)],local_grads['b'+str(i+1)] = affine_relu_backward(dh,cache)
+          dh = local_grads['h'+str(i)]
+          local_grads['h'+str(i-1)],local_grads['W'+str(i)],local_grads['b'+str(i)] = affine_relu_backward(dh,cache)
 
         #########calculate gradients
 
@@ -336,15 +336,6 @@ class FullyConnectedNet(object):
           grads['W'+str(i+1)] = local_grads['W'+str(i+1)] +reg*self.params['W'+str(i+1)]
           grads['b'+str(i+1)] = local_grads['b'+str(i+1)]
       
-        # # dict_keys(['h3', 'W3', 'b3', 'h2', 'W2', 'b2', 'h1', 'W1', 'b1'])
-        # grads['W1'] = local_grads['W1']+reg*self.params
-        # grads['b1'] = local_grads['b1']
-        # grads['W2'] = dw2+reg*W2
-        # grads['b2'] = db2
-        # grads['W3'] = dw2+reg*W2
-        # grads['b3'] = db2
-
-
         ############################################################################
         #                             END OF YOUR CODE                             #
         ############################################################################
