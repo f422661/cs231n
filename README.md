@@ -14,7 +14,7 @@ These are the homework I have finished in cs231
 
 * Q1: [Fully-connected Neural Network](https://github.com/f422661/cs231n/blob/master/assignment2/FullyConnectedNets.ipynb) (finished)
 * Q2: [Batch Normalization]
-* Q3: [Dropout]
+* Q3: [Dropout](https://github.com/f422661/cs231n/blob/master/assignment2/BatchNormalization.ipynb)(finished)
 * Q4: [Convolutional Networks](https://github.com/f422661/cs231n/blob/master/assignment2/ConvolutionalNetworks.ipynb) (processing)
 * Q5: [PyTorch / TensorFlow on CIFAR-10](https://github.com/f422661/cs231n/blob/master/assignment2/PyTorch.ipynb) (only finished PyTorch)
 
