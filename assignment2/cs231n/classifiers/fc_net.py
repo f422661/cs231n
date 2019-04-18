@@ -264,15 +264,21 @@ class FullyConnectedNet(object):
         ############################################################################
         
         fc_cache = {}
+        dropout_cache = {}
         out_cache = 0
         reg = self.reg
 
         out = X
-        ## hidden layer
+
         for i in range(self.num_layers-1):
           w = self.params['W'+str(i+1)]
           b = self.params['b'+str(i+1)]
           out, fc_cache[i+1] = affine_relu_forward(out, w, b)
+
+          if self.use_dropout:
+            out, dropout_cache[i+1] = dropout_forward(out, self.dropout_param)
+          else:
+            pass
 
         ## output layer
         w = self.params['W'+str(self.num_layers)]
@@ -319,11 +325,19 @@ class FullyConnectedNet(object):
         ## The gradient of last layer
         local_grads['h'+str(self.num_layers-1)],local_grads['W'+str(self.num_layers)],local_grads['b'+str(self.num_layers)] = affine_relu_backward(dL,out_cache)
 
+        if self.use_dropout:
+          for i in range(self.num_layers-1,0,-1):
+            cache = fc_cache[i]
+            d_cache = dropout_cache[i]
+            dh = local_grads['h'+str(i)]
+            dh = dropout_backward(dh,d_cache)
+            local_grads['h'+str(i-1)],local_grads['W'+str(i)],local_grads['b'+str(i)] = affine_relu_backward(dh,cache)
 
-        for i in range(self.num_layers-1,0,-1):
-          cache = fc_cache[i]
-          dh = local_grads['h'+str(i)]
-          local_grads['h'+str(i-1)],local_grads['W'+str(i)],local_grads['b'+str(i)] = affine_relu_backward(dh,cache)
+        else:
+          for i in range(self.num_layers-1,0,-1):
+            cache = fc_cache[i]
+            dh = local_grads['h'+str(i)]
+            local_grads['h'+str(i-1)],local_grads['W'+str(i)],local_grads['b'+str(i)] = affine_relu_backward(dh,cache)
 
         #########calculate gradients
 
