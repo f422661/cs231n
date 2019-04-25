@@ -18,5 +18,6 @@ These are the homework I have finished in cs231
 * Q4: [Convolutional Networks](https://github.com/f422661/cs231n/blob/master/assignment2/ConvolutionalNetworks.ipynb) (processing)
 * Q5: [PyTorch / TensorFlow on CIFAR-10](https://github.com/f422661/cs231n/blob/master/assignment2/PyTorch.ipynb) (finished PyTorch)
 
+## Assignment3:
 
-
+* Q1: [Image Captioning with RNNs]
