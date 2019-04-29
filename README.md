@@ -14,10 +14,10 @@ These are the homework I have finished in cs231
 
 * Q1: [Fully-connected Neural Network](https://github.com/f422661/cs231n/blob/master/assignment2/FullyConnectedNets.ipynb) (finished)
 * Q2: [Batch Normalization]
-* Q3: [Dropout](https://github.com/f422661/cs231n/blob/master/assignment2/Dropout.ipynb)(finished)
+* Q3: [Dropout](https://github.com/f422661/cs231n/blob/master/assignment2/Dropout.ipynb) (finished)
 * Q4: [Convolutional Networks](https://github.com/f422661/cs231n/blob/master/assignment2/ConvolutionalNetworks.ipynb) (processing)
 * Q5: [PyTorch / TensorFlow on CIFAR-10](https://github.com/f422661/cs231n/blob/master/assignment2/PyTorch.ipynb) (finished PyTorch)
 
 ## Assignment3:
 
-* Q1: [Image Captioning with RNNs](https://github.com/f422661/cs231n/blob/master/assignment3/RNN_Captioning.ipynb)(finished)
+* Q1: [Image Captioning with RNNs](https://github.com/f422661/cs231n/blob/master/assignment3/RNN_Captioning.ipynb) (finished)
