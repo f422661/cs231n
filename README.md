@@ -20,4 +20,4 @@ These are the homework I have finished in cs231
 
 ## Assignment3:
 
-* Q1: [Image Captioning with RNNs](https://github.com/f422661/cs231n/blob/master/assignment3/RNN_Captioning.ipynb)
+* Q1: [Image Captioning with RNNs](https://github.com/f422661/cs231n/blob/master/assignment3/RNN_Captioning.ipynb)(finished)
