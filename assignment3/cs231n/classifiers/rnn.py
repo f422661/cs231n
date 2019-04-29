@@ -140,7 +140,20 @@ class CaptioningRNN(object):
         # Note also that you are allowed to make use of functions from layers.py   #
         # in your implementation, if needed.                                       #
         ############################################################################
-        pass
+        
+        ## Forward pass
+        h0, h0_cache = affine_forward(features, W_proj, b_proj)
+        embedding, embedding_cache = word_embedding_forward(captions_in, W_embed)
+        h_rnn, h_cache   = rnn_forward(embedding, h0, Wx, Wh, b)
+        out, out_cache = temporal_affine_forward(h_rnn, W_vocab, b_vocab)
+        loss, dout = temporal_softmax_loss(out, captions_out, mask, verbose=False)
+
+        ## Backward pass    
+        dh_rnn, grads["W_vocab"], grads["b_vocab"] = temporal_affine_backward(dout, out_cache)
+        dembedding, dh0, grads["Wx"], grads["Wh"], grads["b"] = rnn_backward(dh_rnn, h_cache)
+        grads["W_embed"] = word_embedding_backward(dembedding, embedding_cache)
+        _, grads["W_proj"], grads["b_proj"] = affine_backward(dh0, h0_cache)
+
         ############################################################################
         #                             END OF YOUR CODE                             #
         ############################################################################
@@ -205,7 +218,26 @@ class CaptioningRNN(object):
         # NOTE: we are still working over minibatches in this function. Also if   #
         # you are using an LSTM, initialize the first cell state to zeros.        #
         ###########################################################################
-        pass
+        
+        h, _ = affine_forward(features, W_proj, b_proj)
+
+        x = np.zeros((N,1))
+
+        x[:,0] = self._start
+        x = x.astype(int)  
+
+        for i in range(max_length):
+
+          x, _ = word_embedding_forward(x, W_embed)
+          x = x.reshape(-1,x.shape[-1])
+          h, _ = rnn_step_forward(x, h, Wx, Wh, b)
+          out, _ = affine_forward(h, W_vocab, b_vocab)
+          idx = np.argmax(out, axis = 1)
+          captions[:,i] = idx
+
+          ## the output of the current hidden state will pass to next input
+          x = idx
+
         ############################################################################
         #                             END OF YOUR CODE                             #
         ############################################################################
