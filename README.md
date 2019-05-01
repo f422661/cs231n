@@ -1,6 +1,6 @@
 # cs231n
 
-These are the homework I have finished in cs231  
+These are the homework I have finished in cs231n
 
 ## Assignment1:
 
